@@ -1,0 +1,7 @@
+{
+  "name": "CAASL Drone Restriction Hub",
+  "description": "A professional web tool for managing and checking drone flight restrictions in Sri Lanka, featuring interactive maps, regulatory guidance, and an AI-powered flight assistant.",
+  "requestFramePermissions": [
+    "geolocation"
+  ]
+}
