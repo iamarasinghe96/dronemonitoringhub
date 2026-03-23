@@ -1,31 +1,49 @@
-
 export enum DroneCategory {
   CATEGORY_A = 'Category A (Above 25kg)',
   CATEGORY_B = 'Category B (1kg - 25kg)',
   CATEGORY_C = 'Category C (Below 1kg)',
 }
 
+export type ZoneType = 'RESTRICTED' | 'PROHIBITED' | 'WARNING';
+
 export interface Zone {
   id: string;
   name: string;
-  type: 'RESTRICTED' | 'PROHIBITED' | 'WARNING';
+  type: ZoneType;
   description: string;
   radius: number; // in km
   lat: number;
   lng: number;
+  createdAt?: Date;
+  updatedAt?: Date;
 }
 
 export interface ActiveFlight {
+  id: string;
   license: string;
-  from: string;
-  to: string;
+  pilotName: string;
+  contact: string;
+  from: string; // ISO date string
+  to: string;   // ISO date string
   lat: number;
   lng: number;
-  status: string;
+  status: 'APPROVED' | 'PENDING' | 'REJECTED';
   notes: string;
-  contact?: string;
-  pilotName?: string;
-  additionalData?: string;
+  createdAt?: Date;
+}
+
+export interface Pilot {
+  id: string;
+  licenseId: string;
+  name: string;
+  nic: string;
+  phone: string;
+  email: string;
+  address: string;
+  droneModel: string;
+  droneSerial: string;
+  category: DroneCategory;
+  registeredAt?: Date;
 }
 
 export interface ChatMessage {
@@ -34,7 +52,6 @@ export interface ChatMessage {
   timestamp: Date;
 }
 
-// Fix: Added uri property to support links in the AI Assistant UI
 export interface GroundingSource {
   title: string;
   uri: string;
